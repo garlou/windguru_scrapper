@@ -16,7 +16,7 @@ define('TELEGRAM_PATH', '/home/kae/Documents/workspace/tg/');
 define('TELEGRAM_PEER', 'Surf');
 
 if( $argv[1] == 'prod')
-	define('CAPTURES_PATH', '/home/kae/Documents/workspace/os_crawler/captures/');
+	define('CAPTURES_PATH', '/home/kae/Documents/workspace/windguru_scrapper/captures/');
 else
 	define('CAPTURES_PATH', '/Users/kae/Documents/workspace/php/captures/');
 
@@ -50,12 +50,13 @@ foreach (new DirectoryIterator(CAPTURES_PATH) as $fileInfo) {
 	    echo "processing: ".$city."\r\n";
 			$telegram->msg(TELEGRAM_PEER, $city.":");
 			echo "sending photo: ".CAPTURES_PATH.$filename."\r\n";
-			if ($telegram->send_photo(TELEGRAM_PEER, CAPTURES_PATH.$filename) !== false) //photo sent
+			if ($telegram->send_photo(TELEGRAM_PEER, CAPTURES_PATH.$filename) !== false)
 			{
-				//deletes foto
-				echo "delete file: ".CAPTURES_PATH.$filename."\r\n";
-				unlink(CAPTURES_PATH.$filename);
+				 //photo sent
 			}
+			//deletes foto
+			echo "delete file: ".CAPTURES_PATH.$filename."\r\n";
+			unlink(CAPTURES_PATH.$filename);
     }
 }
 
